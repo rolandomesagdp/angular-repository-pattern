@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AnalysisServiceContracts } from 'core';
 
 @Component({
    selector: 'app-root',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
    title = 'ui-pro';
+   
+   items: string[] = ["one", "two"];
 
+   constructor(public analysisService: AnalysisServiceContracts) { }
 }

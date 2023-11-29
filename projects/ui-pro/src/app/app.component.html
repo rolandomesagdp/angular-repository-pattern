@@ -317,6 +317,9 @@
 
 <div class="content" role="main">
 
+   @for (analysis of analysisService.getAll() | async; track analysis) {
+      <div>{{analysis}}</div>
+   }
 
   <!-- Footer -->
   <footer>
