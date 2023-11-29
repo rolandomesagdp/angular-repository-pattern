@@ -316,10 +316,14 @@
 </div>
 
 <div class="content" role="main">
-
-   @for (analysis of analysisResultListener.analysisResult$ | async; track analysis) {
-      <div>{{analysis}}</div>
-   }
+   <ng-container *ngIf="analysisResultListener.analysisResult$ | async as analises; else loadingTemplate">
+      @for (analysis of analises; track analysis) {
+         <div>{{analysis}}</div>
+      }
+   </ng-container>
+   <ng-template #loadingTemplate>
+      <div>loading ...{{analysisResultListener.timeTrack}}</div>
+   </ng-template>
 
   <!-- Footer -->
   <footer>
