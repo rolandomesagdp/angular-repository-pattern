@@ -317,7 +317,7 @@
 
 <div class="content" role="main">
 
-   @for (analysis of analysisService.getAll() | async; track analysis) {
+   @for (analysis of analysisResultListener.analysisResult$ | async; track analysis) {
       <div>{{analysis}}</div>
    }
 

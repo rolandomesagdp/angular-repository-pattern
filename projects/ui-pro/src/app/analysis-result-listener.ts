@@ -6,20 +6,21 @@ export class AnalysisResultListener {
    private maxNumber: number = 5;
    private timeTrack: number = 0;
 
-   private timer$ = timer(1000, 1000);
+   private timer$ = timer(0, 1000);
 
    analysisResult$: Observable<string[]> = this.timer$.pipe(
       tap(() => { this.timeTrack++}),
       concatMap(() => {
-         if(this.timeTrack === this.maxNumber) {
+         if(this.timeTrack > this.maxNumber) {
             this.stop$.next();
          }
          return this.analysisService.getAll();
+      }),
+      map((analysis: string[]) => {
+         return [...analysis, this.timeTrack.toString()]
       }),
       takeUntil(this.stop$)
    )
 
    constructor(private analysisService: AnalysisServiceContracts) { }
-
-
 }
